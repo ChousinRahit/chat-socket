@@ -1,10 +1,11 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 import {styles} from '../../utils/styles';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default function MessageComponent({item, user}) {
   const status = item.user !== user;
-
+  console.log(user, 'uuuu');
   return (
     <View>
       <View
@@ -14,7 +15,15 @@ export default function MessageComponent({item, user}) {
             : [styles.mmessageWrapper, {alignItems: 'flex-end'}]
         }>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Text>M avatar</Text>
+          <View>
+            <Icon
+              name="person"
+              size={24}
+              color="green"
+              style={{marginRight: 10}}
+            />
+            <Text>{user}</Text>
+          </View>
           <View
             style={
               status

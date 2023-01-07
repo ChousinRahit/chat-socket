@@ -83,9 +83,9 @@ export const styles = StyleSheet.create({
   },
   messaginginputContainer: {
     width: '100%',
-    minHeight: 100,
+    minHeight: 60,
     backgroundColor: 'white',
-    paddingVertical: 30,
+    paddingVertical: 10,
     paddingHorizontal: 15,
     justifyContent: 'center',
     flexDirection: 'row',
@@ -189,6 +189,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     flex: 1,
+    marginLeft: 20,
   },
   ctime: {
     opacity: 0.5,

@@ -1,4 +1,4 @@
-import React, {useEffect, useLayoutEffect, useState} from 'react';
+import React, {useEffect, useLayoutEffect, useState, useRef} from 'react';
 import {View, TextInput, Text, FlatList, Pressable} from 'react-native';
 import socket from '../utils/socket';
 import MessageComponent from './component/MessageComponent';
@@ -12,6 +12,8 @@ const Messaging = ({route, navigation}) => {
   const [chatMessages, setChatMessages] = useState([]);
   const [message, setMessage] = useState('');
 
+  const mesRef = useRef();
+
   const getUsername = async () => {
     try {
       const value = await AsyncStorage.getItem('username');
@@ -22,8 +24,10 @@ const Messaging = ({route, navigation}) => {
       console.error('Error while loading username!');
     }
   };
+  console.log(chatMessages);
 
   const handleNewMessage = () => {
+    console.log('new message');
     const hour =
       new Date().getHours() < 10
         ? `0${new Date().getHours()}`
@@ -34,6 +38,9 @@ const Messaging = ({route, navigation}) => {
         ? `0${new Date().getMinutes()}`
         : `${new Date().getMinutes()}`;
 
+    if (!message) {
+      return;
+    }
     if (user) {
       socket.emit('newMessage', {
         message,
@@ -42,6 +49,7 @@ const Messaging = ({route, navigation}) => {
         timestamp: {hour, mins},
       });
     }
+    setMessage('');
   };
 
   useLayoutEffect(() => {
@@ -64,6 +72,10 @@ const Messaging = ({route, navigation}) => {
         ]}>
         {chatMessages[0] ? (
           <FlatList
+            ref={mesRef}
+            onContentSizeChange={() => {
+              mesRef.current.scrollToEnd({animated: true});
+            }}
             data={chatMessages}
             renderItem={({item}) => (
               <MessageComponent item={item} user={user} />
@@ -79,12 +91,13 @@ const Messaging = ({route, navigation}) => {
         <TextInput
           style={styles.messaginginput}
           onChangeText={value => setMessage(value)}
+          value={message}
         />
         <Pressable
           style={styles.messagingbuttonContainer}
           onPress={handleNewMessage}>
-          <View>
-            <Text style={{color: '#f2f0f1', fontSize: 20}}>SEND</Text>
+          <View style={{height: 20}}>
+            <Text style={{color: '#f2f0f1', fontSize: 14}}>SEND</Text>
           </View>
         </Pressable>
       </View>

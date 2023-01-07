@@ -18,9 +18,9 @@ const Chat = () => {
   const [rooms, setRooms] = useState([]);
 
   useLayoutEffect(() => {
-    console.log('cghcjgvhj');
     function fetchGroups() {
-      fetch('https://socketserver-chousinrahit.vercel.app/api')
+      fetch('http://192.168.0.106:4000/api')
+        // fetch('https://socketserver-chousinrahit.vercel.app/api')
         .then(res => res.json())
         .then(data => {
           setRooms(data);
@@ -34,13 +34,14 @@ const Chat = () => {
     fetchGroups();
   }, []);
 
+  console.log(socket);
   useEffect(() => {
+    console.log(socket);
     socket.on('roomsList', rooms => {
+      console.log(rooms);
       setRooms(rooms);
     });
   }, [socket]);
-
-  console.log('qwertyuio');
 
   const handleCreateGroup = () => setVisible(true);
 

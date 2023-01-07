@@ -2,6 +2,7 @@ import {View, Text, Pressable} from 'react-native';
 import React, {useLayoutEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {styles} from '../../utils/styles';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const ChatComponent = ({item}) => {
   const navigation = useNavigation();
@@ -20,8 +21,7 @@ const ChatComponent = ({item}) => {
 
   return (
     <Pressable style={styles.cchat} onPress={handleNavigation}>
-      <Text>Icon</Text>
-
+      <Icon name="group-work" size={50} color="green" />
       <View style={styles.crightContainer}>
         <View>
           <Text style={styles.cusername}>{item.name}</Text>
