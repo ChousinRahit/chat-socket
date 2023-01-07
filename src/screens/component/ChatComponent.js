@@ -7,7 +7,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 const ChatComponent = ({item}) => {
   const navigation = useNavigation();
   const [messages, setMessages] = useState({});
-
   useLayoutEffect(() => {
     setMessages(item.messages[item.messages.length - 1]);
   }, []);

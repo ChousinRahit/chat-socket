@@ -172,6 +172,8 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fff',
     height: 80,
     marginBottom: 10,
+    borderWidth: 1,
+    borderColor: 'rgba(109, 130, 255, 0.4)',
   },
   cavatar: {
     marginRight: 15,
@@ -180,10 +182,12 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 5,
     fontWeight: 'bold',
+    color: '#12263f',
   },
   cmessage: {
     fontSize: 14,
     opacity: 0.7,
+    color: 'rgba(59,130,246,.5)',
   },
   crightContainer: {
     flexDirection: 'row',

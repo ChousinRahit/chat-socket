@@ -5,7 +5,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default function MessageComponent({item, user}) {
   const status = item.user !== user;
-  console.log(user, 'uuuu');
   return (
     <View>
       <View

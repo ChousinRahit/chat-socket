@@ -19,8 +19,8 @@ const Chat = () => {
 
   useLayoutEffect(() => {
     function fetchGroups() {
-      fetch('http://192.168.0.106:4000/api')
-        // fetch('https://socketserver-chousinrahit.vercel.app/api')
+      // fetch('http://192.168.0.106:4000/api')
+      fetch('https://socser.onrender.com/api')
         .then(res => res.json())
         .then(data => {
           setRooms(data);
